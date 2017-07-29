@@ -971,6 +971,9 @@ class Config(object):
         *validate*, then the configuration will be checked for errors and the
         script will exit without running the simulation.
         """
+
+        print 'This is the first test2 change'
+
         if len(sys.argv) > 1 and sys.argv[1].lower() == 'validate':
             # Validate the configuration and exit
             self.validate()

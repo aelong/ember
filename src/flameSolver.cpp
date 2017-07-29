@@ -1,6 +1,7 @@
 #include "flameSolver.h"
 #include "scalarFunction.h"
 #include <boost/foreach.hpp>
+#include <iostream> //aelong
 
 #define foreach BOOST_FOREACH
 
@@ -39,6 +40,24 @@ void FlameSolver::setOptions(const ConfigOptions& _options)
 
 void FlameSolver::initialize(void)
 {
+    //aelong:
+    std::cout << "This is a c++ mod test in flamesolver initialize"<<std::endl; //aelong
+    std::ofstream ofile("file1.txt");
+	    if (ofile.is_open())
+	    {
+	        ofile << "Here is line 1." << std::endl;
+	        ofile << "Here is line 2." << std::endl;
+	        ofile << "Here is line 3." << std::endl;
+	        ofile.close();
+
+	        std::cout << "Finished writing text to file1.txt." << std::endl;
+	    }
+	    else
+	    {
+	        std::cerr << "Couldn't open file1.txt for writing." << std::endl;
+	    }
+	//end aelong
+
     tbbTaskSched.initialize (options.nThreads);
     delete strainfunc;
     strainfunc = newScalarFunction(options.strainFunctionType, options);
