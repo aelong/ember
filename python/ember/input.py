@@ -1253,6 +1253,10 @@ class ConcreteConfig(_ember.ConfigOptions):
         """
         Run a single flame simulation using the parameters set in this Config.
         """
+
+        print 'This is a test'  # aelong
+
+
         confString = self.original.stringify()
 
         if not os.path.isdir(self.paths.outputDir):
