@@ -1255,6 +1255,8 @@ class ConcreteConfig(_ember.ConfigOptions):
         """
 
         print 'This is a test'  # aelong
+        print 'this is an additional test' #aelong
+        print 'this is atest from clion' #aelong
 
 
         confString = self.original.stringify()
