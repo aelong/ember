@@ -133,7 +133,7 @@ cdef extern from "grid.h":
     cdef cppclass CxxOneDimGrid "OneDimGrid":
         CxxEigenVec x
         int alpha
-        CxxEigenVec cfp, cf, cfm, hh, rphalf
+        CxxEigenVec cfp, cf, cfm, hh, rx_half
 
 
 cdef extern from "quasi2d.h":

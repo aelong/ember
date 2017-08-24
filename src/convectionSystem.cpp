@@ -41,7 +41,7 @@ int ConvectionSystemUTW::f(const realtype t, const sdVector& y, sdVector& ydot)
 
         if (jContBC != 0) {
             j = jContBC-1;
-//            dVdx0 = - drhodt[j] - rho[j] * U[j] * rphalf[j];
+//            dVdx0 = - drhodt[j] - rho[j] * U[j] * rx_half[j];
             rV[j] = (x[j] - xVzero) * dVdx0;
             for (j=jContBC-1; j>0; j--) {
                 rV[j-1] = rV[j] + hh[j-1] * (drhodt[j-1] + rho[j-1] * U[j-1] * rphalf[j-1]);

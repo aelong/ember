@@ -118,8 +118,8 @@ public:
     dvec cfp; //!< Coefficient for y[j+1] in first centered difference
     dvec dlj; //!< Average of left and right grid spacing
     dvec hh; //!< Grid spacing between x[j] and x[j+1]
-    dvec rphalf; //!< "radius" at x[j+1/2]. Equal to 1 for planar geometries.
-    dvec r; //!< "radius" at x[j]. Equal to 1 for planar geometries.
+    dvec rx_half; //!< "radius" at x[j+1/2]. Equal to 1 for planar geometries.
+    dvec rx; //!< "radius" at x[j]. Equal to 1 for planar geometries.
     size_t nVars; //!< number of variables at each grid point
 
     //! Only the first nAdapt variables at each point are used for adaptation

@@ -416,11 +416,11 @@ The curved flame at zero stagnation radius is quite similar to the twin
  opposed-jet flame.
  Instead of the planar stagnation flow, we have an axisymmetric stagnation
  flow, with reactants flowing inward from 
-\begin_inset Formula $r=\infty$
+\begin_inset Formula $rx=\infty$
 \end_inset
 
  toward the stagnation point at 
-\begin_inset Formula $r=0$
+\begin_inset Formula $rx=0$
 \end_inset
 
 , establishing a cylindrical flame propagating away from the centerline.
@@ -434,7 +434,7 @@ reference "cap:CurvedFlameZero"
 .
  The potential flow velocity field is
 \begin_inset Formula \begin{equation}
-u=a(t)z\quad\quad v=-\frac{1}{2}a(t)r\label{eq:potential-rstag0}\end{equation}
+u=a(t)z\quad\quad v=-\frac{1}{2}a(t)rx\label{eq:potential-rstag0}\end{equation}
 
 \end_inset
 
@@ -451,13 +451,13 @@ where
 \end_inset
 
  and 
-\begin_inset Formula $r$
+\begin_inset Formula $rx$
 \end_inset
 
  directions, respectively.
  As in the twin opposed jet flame, a symmetry boundary condition applies
  at 
-\begin_inset Formula $r=0$
+\begin_inset Formula $rx=0$
 \end_inset
 
 , and flame extinction occurs when the flame is pushed too close to the
@@ -513,7 +513,7 @@ Positively (left) and negatively (right) curved tubular flames at finite
 
 The tubular flame at zero stagnation radius can be modified by introducing
  a line source at 
-\begin_inset Formula $r=0$
+\begin_inset Formula $rx=0$
 \end_inset
 
 .
@@ -531,7 +531,7 @@ reference "cap:CurvedFlameFinite"
 
 .
  Since the composition of the flow coming from 
-\begin_inset Formula $r=0$
+\begin_inset Formula $rx=0$
 \end_inset
 
  may be freely specified, this configuration permits both positively and
@@ -541,12 +541,12 @@ reference "cap:CurvedFlameFinite"
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-u=az\quad\quad v=\frac{a}{2}\left(\frac{R^{2}-r^{2}}{r}\right)\label{eq:potential-curved-finite}\end{equation}
+u=az\quad\quad v=\frac{a}{2}\left(\frac{R^{2}-rx^{2}}{rx}\right)\label{eq:potential-curved-finite}\end{equation}
 
 \end_inset
 
 The boundary condition at 
-\begin_inset Formula $r=0$
+\begin_inset Formula $rx=0$
 \end_inset
 
  requires special attention in order to capture both the symmetry condition
@@ -589,11 +589,11 @@ The stagnation point flow configurations discussed above can be rewritten
 
  for curved geometry.
  Introducing the coordinate system 
-\begin_inset Formula $(r,z)$
+\begin_inset Formula $(rx,z)$
 \end_inset
 
  where 
-\begin_inset Formula $r$
+\begin_inset Formula $rx$
 \end_inset
 
  is the coordinate normal to the flame (regardless of whether the coordinate
@@ -604,7 +604,7 @@ The stagnation point flow configurations discussed above can be rewritten
  coordinate is tangential to the flame.
  The potential flow velocity field is then 
 \begin_inset Formula \begin{equation}
-u=az\quad\quad v=\frac{a}{\alpha+1}\left(\frac{\left|R\right|R^{\alpha}-r^{\alpha+1}}{r^{\alpha}}\right)\label{eq:potential-unified}\end{equation}
+u=az\quad\quad v=\frac{a}{\alpha+1}\left(\frac{\left|R\right|R^{\alpha}-rx^{\alpha+1}}{rx^{\alpha}}\right)\label{eq:potential-unified}\end{equation}
 
 \end_inset
 
@@ -667,7 +667,7 @@ key "Kee2003"
 
 .
  Consider the coordinate system 
-\begin_inset Formula $(z,r,\theta)$
+\begin_inset Formula $(z,rx,\theta)$
 \end_inset
 
  with velocity components 
@@ -675,7 +675,7 @@ key "Kee2003"
 \end_inset
 
  and let 
-\begin_inset Formula $\hat{r}$
+\begin_inset Formula $\hat{rx}$
 \end_inset
 
  be the flame normal.
@@ -717,7 +717,7 @@ key "Kee2003"
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\nabla F\equiv\hat{z}\frac{\partial F}{\partial z}+\hat{r}\frac{\partial F}{\partial r}\label{eq:gradient}\end{equation}
+\nabla F\equiv\hat{z}\frac{\partial F}{\partial z}+\hat{rx}\frac{\partial F}{\partial rx}\label{eq:gradient}\end{equation}
 
 \end_inset
 
@@ -726,7 +726,7 @@ key "Kee2003"
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\frac{DF}{Dt}=\frac{\partial F}{\partial t}+{\bf v}\cdot\nabla F=\frac{\partial F}{\partial t}+u\frac{\partial F}{\partial z}+v\frac{\partial F}{\partial r}\label{eq:substDeriv}\end{equation}
+\frac{DF}{Dt}=\frac{\partial F}{\partial t}+{\bf v}\cdot\nabla F=\frac{\partial F}{\partial t}+u\frac{\partial F}{\partial z}+v\frac{\partial F}{\partial rx}\label{eq:substDeriv}\end{equation}
 
 \end_inset
 
@@ -739,7 +739,7 @@ The divergence of a vector
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\nabla\cdot\mathbf{F}\equiv\frac{\partial F_{z}}{\partial z}+\frac{1}{r^{\alpha}}\frac{\partial}{\partial r}\left(r^{\alpha}F_{r}\right)\label{eq:divergence}\end{equation}
+\nabla\cdot\mathbf{F}\equiv\frac{\partial F_{z}}{\partial z}+\frac{1}{rx^{\alpha}}\frac{\partial}{\partial rx}\left(rx^{\alpha}F_{rx}\right)\label{eq:divergence}\end{equation}
 
 \end_inset
 
@@ -748,7 +748,7 @@ where
 \end_inset
 
  and 
-\begin_inset Formula $F_{r}$
+\begin_inset Formula $F_{rx}$
 \end_inset
 
  are respectively the 
@@ -756,7 +756,7 @@ where
 \end_inset
 
  and 
-\begin_inset Formula $r$
+\begin_inset Formula $rx$
 \end_inset
 
  components of 
@@ -788,9 +788,9 @@ First, we will focus on the momentum equation.
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
 \mathsf{T}=\left(\begin{array}{ccc}
--p+2\mu\frac{\partial u}{\partial z}+\kappa\nabla\cdot\mathbf{v} & \mu\left(\frac{\partial u}{\partial r}+\frac{\partial v}{\partial z}\right) & \mu\left(\frac{1}{r^{\alpha}}\frac{\partial u}{\partial\theta}+\frac{\partial w}{\partial z}\right)\\
-\mu\left(\frac{\partial u}{\partial r}+\frac{\partial v}{\partial z}\right) & -p+2\mu\frac{\partial v}{\partial r}+\kappa\nabla\cdot\mathbf{v} & \mu\left(\frac{\partial w}{\partial r}-\alpha\frac{w}{r}+\frac{1}{r^{\alpha}}\frac{\partial v}{\partial\theta}\right)\\
-\mu\left(\frac{1}{r^{\alpha}}\frac{\partial u}{\partial\theta}+\frac{\partial w}{\partial z}\right) & \mu\left(\frac{\partial w}{\partial r}-\alpha\frac{w}{r}+\frac{1}{r^{\alpha}}\frac{\partial v}{\partial\theta}\right) & -p+2\mu\left(\frac{1}{r^{\alpha}}\frac{\partial w}{\partial\theta}+\alpha\frac{v}{r}\right)+\kappa\nabla\cdot\mathbf{v}\end{array}\right)\label{eq:stress_tensor}\end{equation}
+-p+2\mu\frac{\partial u}{\partial z}+\kappa\nabla\cdot\mathbf{v} & \mu\left(\frac{\partial u}{\partial rx}+\frac{\partial v}{\partial z}\right) & \mu\left(\frac{1}{rx^{\alpha}}\frac{\partial u}{\partial\theta}+\frac{\partial w}{\partial z}\right)\\
+\mu\left(\frac{\partial u}{\partial rx}+\frac{\partial v}{\partial z}\right) & -p+2\mu\frac{\partial v}{\partial rx}+\kappa\nabla\cdot\mathbf{v} & \mu\left(\frac{\partial w}{\partial rx}-\alpha\frac{w}{rx}+\frac{1}{rx^{\alpha}}\frac{\partial v}{\partial\theta}\right)\\
+\mu\left(\frac{1}{rx^{\alpha}}\frac{\partial u}{\partial\theta}+\frac{\partial w}{\partial z}\right) & \mu\left(\frac{\partial w}{\partial rx}-\alpha\frac{w}{rx}+\frac{1}{rx^{\alpha}}\frac{\partial v}{\partial\theta}\right) & -p+2\mu\left(\frac{1}{rx^{\alpha}}\frac{\partial w}{\partial\theta}+\alpha\frac{v}{rx}\right)+\kappa\nabla\cdot\mathbf{v}\end{array}\right)\label{eq:stress_tensor}\end{equation}
 
 \end_inset
 
@@ -818,7 +818,7 @@ First, we will focus on the momentum equation.
 
 -momentum equation is
 \begin_inset Formula \begin{equation}
-\rho\frac{\partial u}{\partial t}+\rho u\frac{\partial u}{\partial z}+\rho v\frac{\partial u}{\partial r}=\frac{\partial}{\partial z}\left[-p+2\mu\frac{\partial u}{\partial z}+\kappa\nabla\cdot\mathbf{v}\right]+\frac{1}{r^{\alpha}}\frac{\partial}{\partial r}\left[r^{\alpha}\mu\left(\frac{\partial u}{\partial r}+\frac{\partial v}{\partial z}\right)\right]\end{equation}
+\rho\frac{\partial u}{\partial t}+\rho u\frac{\partial u}{\partial z}+\rho v\frac{\partial u}{\partial rx}=\frac{\partial}{\partial z}\left[-p+2\mu\frac{\partial u}{\partial z}+\kappa\nabla\cdot\mathbf{v}\right]+\frac{1}{rx^{\alpha}}\frac{\partial}{\partial rx}\left[rx^{\alpha}\mu\left(\frac{\partial u}{\partial rx}+\frac{\partial v}{\partial z}\right)\right]\end{equation}
 
 \end_inset
 
@@ -842,7 +842,7 @@ The term containing the second coefficient of viscosity,
 
 -momentum equation 
 \begin_inset Formula \begin{equation}
-\rho\frac{\partial u}{\partial t}+\rho u\frac{\partial u}{\partial z}+\rho v\frac{\partial u}{\partial r}=-\frac{\partial p}{\partial z}+\frac{1}{r^{\alpha}}\frac{\partial}{\partial r}\left[r^{\alpha}\mu\frac{\partial u}{\partial r}\right]\end{equation}
+\rho\frac{\partial u}{\partial t}+\rho u\frac{\partial u}{\partial z}+\rho v\frac{\partial u}{\partial rx}=-\frac{\partial p}{\partial z}+\frac{1}{rx^{\alpha}}\frac{\partial}{\partial rx}\left[rx^{\alpha}\mu\frac{\partial u}{\partial rx}\right]\end{equation}
 
 \end_inset
 
@@ -882,7 +882,7 @@ The
 
  may be found similarly.
 \begin_inset Formula \begin{equation}
-\rho\frac{\partial u}{\partial t}+\rho u\frac{\partial u}{\partial z}+\rho v\frac{\partial u}{\partial r}=\rho_{\infty}z\frac{da}{dt}+\rho_{\infty}a^{2}z+\frac{1}{r^{\alpha}}\frac{\partial}{\partial r}\left[r^{\alpha}\mu\frac{\partial u}{\partial r}\right]\end{equation}
+\rho\frac{\partial u}{\partial t}+\rho u\frac{\partial u}{\partial z}+\rho v\frac{\partial u}{\partial rx}=\rho_{\infty}z\frac{da}{dt}+\rho_{\infty}a^{2}z+\frac{1}{rx^{\alpha}}\frac{\partial}{\partial rx}\left[rx^{\alpha}\mu\frac{\partial u}{\partial rx}\right]\end{equation}
 
 \end_inset
 
@@ -917,7 +917,7 @@ Substituting this into the momentum equation gives
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\rho z\frac{\partial U}{\partial t}+\rho Uz\left(z\frac{\partial U}{\partial z}+U\right)+\rho vz\frac{\partial U}{\partial r}=\rho_{\infty}z\frac{da}{dt}+\rho_{\infty}a^{2}z+\frac{z}{r^{\alpha}}\frac{\partial}{\partial r}\left[r^{\alpha}\mu\frac{\partial U}{\partial r}\right]\end{equation}
+\rho z\frac{\partial U}{\partial t}+\rho Uz\left(z\frac{\partial U}{\partial z}+U\right)+\rho vz\frac{\partial U}{\partial rx}=\rho_{\infty}z\frac{da}{dt}+\rho_{\infty}a^{2}z+\frac{z}{rx^{\alpha}}\frac{\partial}{\partial rx}\left[rx^{\alpha}\mu\frac{\partial U}{\partial rx}\right]\end{equation}
 
 \end_inset
 
@@ -938,7 +938,7 @@ Dividing by
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\rho\frac{\partial U}{\partial t}+\rho U^{2}+\rho v\frac{\partial U}{\partial r}=\rho_{\infty}\frac{da}{dt}+\rho_{\infty}a^{2}+\frac{1}{r^{\alpha}}\frac{\partial}{\partial r}\left[r^{\alpha}\mu\frac{\partial U}{\partial r}\right]\end{equation}
+\rho\frac{\partial U}{\partial t}+\rho U^{2}+\rho v\frac{\partial U}{\partial rx}=\rho_{\infty}\frac{da}{dt}+\rho_{\infty}a^{2}+\frac{1}{rx^{\alpha}}\frac{\partial}{\partial rx}\left[rx^{\alpha}\mu\frac{\partial U}{\partial rx}\right]\end{equation}
 
 \end_inset
 
@@ -971,7 +971,7 @@ reference "eq:divergence"
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\frac{\partial\rho}{\partial t}+\frac{1}{r^{\alpha}}\frac{\partial}{\partial r}\left(r^{\alpha}\rho v\right)+\rho\frac{\partial u}{\partial z}=0\end{equation}
+\frac{\partial\rho}{\partial t}+\frac{1}{rx^{\alpha}}\frac{\partial}{\partial rx}\left(rx^{\alpha}\rho v\right)+\rho\frac{\partial u}{\partial z}=0\end{equation}
 
 \end_inset
 
@@ -984,7 +984,7 @@ Making the substitution for the similarity variable
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\frac{\partial\rho}{\partial t}+\frac{1}{r^{\alpha}}\frac{\partial}{\partial r}\left(r^{\alpha}\rho v\right)+\rho U=0\end{equation}
+\frac{\partial\rho}{\partial t}+\frac{1}{rx^{\alpha}}\frac{\partial}{\partial rx}\left(rx^{\alpha}\rho v\right)+\rho U=0\end{equation}
 
 \end_inset
 
@@ -1133,13 +1133,13 @@ reference "eq:divergence"
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\rho\frac{\partial Y_{k}}{\partial t}+V\frac{\partial Y_{k}}{\partial r}=-\frac{1}{r^{\alpha}}\frac{\partial}{\partial r}\left[r^{\alpha}j_{k}\right]+\dot{\omega}_{k}W_{k}\label{eq:1d_species}\end{equation}
+\rho\frac{\partial Y_{k}}{\partial t}+V\frac{\partial Y_{k}}{\partial rx}=-\frac{1}{rx^{\alpha}}\frac{\partial}{\partial rx}\left[rx^{\alpha}j_{k}\right]+\dot{\omega}_{k}W_{k}\label{eq:1d_species}\end{equation}
 
 \end_inset
 
 and the diffusion mass flux is 
 \begin_inset Formula \begin{equation}
-j_{k}=-\rho D_{km}\left(\frac{\partial Y_{k}}{\partial r}+\frac{Y_{k}}{\bar{W}}\frac{\partial\bar{W}}{\partial r}\right)-\frac{D_{k}^{T}}{T}\frac{\partial T}{\partial r}+Y_{k}j'\label{eq:1d_diffusion}\end{equation}
+j_{k}=-\rho D_{km}\left(\frac{\partial Y_{k}}{\partial rx}+\frac{Y_{k}}{\bar{W}}\frac{\partial\bar{W}}{\partial rx}\right)-\frac{D_{k}^{T}}{T}\frac{\partial T}{\partial rx}+Y_{k}j'\label{eq:1d_diffusion}\end{equation}
 
 \end_inset
 
@@ -1233,7 +1233,7 @@ The heat flux vector
 
  is
 \begin_inset Formula \begin{equation}
-\mathbf{q}=-\lambda\nabla T+\sum_{k=1}^{K}h_{k}j_{k}+\mathbf{q}_{r}\end{equation}
+\mathbf{q}=-\lambda\nabla T+\sum_{k=1}^{K}h_{k}j_{k}+\mathbf{q}_{rx}\end{equation}
 
 \end_inset
 
@@ -1243,7 +1243,7 @@ where
 
  is the thermal conductivity of the mixture and the radiation heat flux
  
-\begin_inset Formula $\mathbf{q}_{r}$
+\begin_inset Formula $\mathbf{q}_{rx}$
 \end_inset
 
  is neglected in the present model.
@@ -1293,7 +1293,7 @@ Making the substitutions for the gradient, substantial derivative and divergence
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\rho\frac{\partial T}{\partial t}+\rho v\frac{\partial T}{\partial r}+\frac{1}{c_{p}}\left(\sum_{k=1}^{K}\hat{h}_{k}\dot{\omega}_{k}+\sum_{k=1}^{K}j_{k}c_{p,k}\frac{\partial T}{\partial r}\right)=\frac{1}{c_{p}}\frac{1}{r^{\alpha}}\frac{\partial}{\partial r}\left[r^{\alpha}\lambda\frac{\partial T}{\partial r}\right]\end{equation}
+\rho\frac{\partial T}{\partial t}+\rho v\frac{\partial T}{\partial rx}+\frac{1}{c_{p}}\left(\sum_{k=1}^{K}\hat{h}_{k}\dot{\omega}_{k}+\sum_{k=1}^{K}j_{k}c_{p,k}\frac{\partial T}{\partial rx}\right)=\frac{1}{c_{p}}\frac{1}{rx^{\alpha}}\frac{\partial}{\partial rx}\left[rx^{\alpha}\lambda\frac{\partial T}{\partial rx}\right]\end{equation}
 
 \end_inset
 
@@ -1315,7 +1315,7 @@ Introducing the notation
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\frac{\partial\rho}{\partial t}+\frac{1}{r^{\alpha}}\frac{\partial}{\partial r}\left(r^{\alpha}V\right)+\rho U=0\label{eq:1d_cont0}\end{equation}
+\frac{\partial\rho}{\partial t}+\frac{1}{rx^{\alpha}}\frac{\partial}{\partial rx}\left(rx^{\alpha}V\right)+\rho U=0\label{eq:1d_cont0}\end{equation}
 
 \end_inset
 
@@ -1324,7 +1324,7 @@ Introducing the notation
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\rho\frac{\partial U}{\partial t}+V\frac{\partial U}{\partial r}+\rho U^{2}-\rho_{\infty}\left(\frac{da}{dt}+a^{2}\right)-\frac{1}{r^{\alpha}}\frac{\partial}{\partial r}\left[r^{\alpha}\mu\frac{\partial U}{\partial r}\right]=0\label{eq:1d_mom0}\end{equation}
+\rho\frac{\partial U}{\partial t}+V\frac{\partial U}{\partial rx}+\rho U^{2}-\rho_{\infty}\left(\frac{da}{dt}+a^{2}\right)-\frac{1}{rx^{\alpha}}\frac{\partial}{\partial rx}\left[rx^{\alpha}\mu\frac{\partial U}{\partial rx}\right]=0\label{eq:1d_mom0}\end{equation}
 
 \end_inset
 
@@ -1333,7 +1333,7 @@ Introducing the notation
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\rho\frac{\partial Y_{k}}{\partial t}+V\frac{\partial Y_{k}}{\partial r}+\frac{1}{r^{\alpha}}\frac{\partial}{\partial r}\left[r^{\alpha}j_{k}\right]-\dot{\omega}_{k}W_{k}=0\label{eq:1d_species0}\end{equation}
+\rho\frac{\partial Y_{k}}{\partial t}+V\frac{\partial Y_{k}}{\partial rx}+\frac{1}{rx^{\alpha}}\frac{\partial}{\partial rx}\left[rx^{\alpha}j_{k}\right]-\dot{\omega}_{k}W_{k}=0\label{eq:1d_species0}\end{equation}
 
 \end_inset
 
@@ -1342,7 +1342,7 @@ Introducing the notation
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\rho\frac{\partial T}{\partial t}+V\frac{\partial T}{\partial r}+\frac{1}{c_{p}}\left(\sum_{k=1}^{K}\hat{h}_{k}\dot{\omega}_{k}+\sum_{k=1}^{K}j_{k}c_{p,k}\frac{\partial T}{\partial r}-\frac{1}{r^{\alpha}}\frac{\partial}{\partial r}\left[r^{\alpha}\lambda\frac{\partial T}{\partial r}\right]\right)=0\label{eq:1d_energy0}\end{equation}
+\rho\frac{\partial T}{\partial t}+V\frac{\partial T}{\partial rx}+\frac{1}{c_{p}}\left(\sum_{k=1}^{K}\hat{h}_{k}\dot{\omega}_{k}+\sum_{k=1}^{K}j_{k}c_{p,k}\frac{\partial T}{\partial rx}-\frac{1}{rx^{\alpha}}\frac{\partial}{\partial rx}\left[rx^{\alpha}\lambda\frac{\partial T}{\partial rx}\right]\right)=0\label{eq:1d_energy0}\end{equation}
 
 \end_inset
 
@@ -1352,7 +1352,7 @@ where the diffusion mass flux appearing in the species and energy equations
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-j_{k}=-\rho D_{km}\left(\frac{\partial Y_{k}}{\partial r}+\frac{Y_{k}}{\bar{W}}\frac{\partial\bar{W}}{\partial r}\right)-\frac{D_{k}^{T}}{T}\frac{\partial T}{\partial r}+Y_{k}j'\end{equation}
+j_{k}=-\rho D_{km}\left(\frac{\partial Y_{k}}{\partial rx}+\frac{Y_{k}}{\bar{W}}\frac{\partial\bar{W}}{\partial rx}\right)-\frac{D_{k}^{T}}{T}\frac{\partial T}{\partial rx}+Y_{k}j'\end{equation}
 
 \end_inset
 
@@ -1431,8 +1431,8 @@ For a premixed flame with reactants supplied from
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
 \begin{array}{ccc}
-r=-\infty: & Y_{k}=Y_{k,u} & T=T_{u}\\
-r=+\infty: & Y_{k}=Y_{k,b} & T=T_{b}\end{array}\label{eq:BC_fixedval}\end{equation}
+rx=-\infty: & Y_{k}=Y_{k,u} & T=T_{u}\\
+rx=+\infty: & Y_{k}=Y_{k,b} & T=T_{b}\end{array}\label{eq:BC_fixedval}\end{equation}
 
 \end_inset
 
@@ -1460,13 +1460,13 @@ reference "sub:Unified-formulation"
 \end_inset
 
 , the 
-\begin_inset Formula $r=\infty$
+\begin_inset Formula $rx=\infty$
 \end_inset
 
  boundary condition is the same as for the curved flame at zero stagnation
  radius.
  The boundary conditions at 
-\begin_inset Formula $r=0$
+\begin_inset Formula $rx=0$
 \end_inset
 
 , however, require special attention.
@@ -1479,7 +1479,7 @@ reference "sub:Unified-formulation"
 \end_inset
 
  as 
-\begin_inset Formula $r\rightarrow0$
+\begin_inset Formula $rx\rightarrow0$
 \end_inset
 
  in the potential flow solution of Equation 
@@ -1496,7 +1496,7 @@ reference "eq:potential-curved-finite"
 
 , then the boundary condition for the continuity equation is 
 \begin_inset Formula \begin{equation}
-r=0:\quad rV=\frac{1}{\alpha+1}\rho a\left|R\right|R\end{equation}
+rx=0:\quad rV=\frac{1}{\alpha+1}\rho a\left|R\right|R\end{equation}
 
 \end_inset
 
@@ -1511,12 +1511,12 @@ If the boundary mass flux
  at that boundary, it is important to retain the effect of the mixture being
  introduced, which may not be at the same state as the mixture in the vicinity
  of 
-\begin_inset Formula $r=0$
+\begin_inset Formula $rx=0$
 \end_inset
 
 .
  To this end, we consider an integral, control volume approach to the 
-\begin_inset Formula $r=0$
+\begin_inset Formula $rx=0$
 \end_inset
 
  boundary condition.
@@ -1528,7 +1528,7 @@ reference "eq:1d_species0"
 \end_inset
 
 , we multiply through by 
-\begin_inset Formula $r^{\alpha}$
+\begin_inset Formula $rx^{\alpha}$
 \end_inset
 
  and integrate from 
@@ -1545,7 +1545,7 @@ reference "eq:1d_species0"
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\int_{0}^{R_{i}}r^{\alpha}\rho\frac{\partial Y_{k}}{\partial t}+r^{\alpha}V\frac{\partial Y_{k}}{\partial r}+\frac{\partial}{\partial r}\left[r^{\alpha}j_{k}\right]-r^{\alpha}\dot{\omega}_{k}W_{k}\, dr=0\end{equation}
+\int_{0}^{R_{i}}rx^{\alpha}\rho\frac{\partial Y_{k}}{\partial t}+rx^{\alpha}V\frac{\partial Y_{k}}{\partial rx}+\frac{\partial}{\partial rx}\left[rx^{\alpha}j_{k}\right]-rx^{\alpha}\dot{\omega}_{k}W_{k}\, dr=0\end{equation}
 
 \end_inset
 
@@ -1565,23 +1565,23 @@ Because this volume is small, we assume that variations of
  out of the integral.
  
 \begin_inset Formula \begin{equation}
-\frac{R_{i}^{\alpha+1}}{\alpha+1}\left(\rho\frac{\partial Y_{k}}{\partial t}-\dot{\omega}_{k}W_{k}\right)+\int_{0}^{R_{i}}r^{\alpha}V\frac{\partial Y_{k}}{\partial r}+\frac{\partial}{\partial r}\left[r^{\alpha}j_{k}\right]\, dr=0\end{equation}
+\frac{R_{i}^{\alpha+1}}{\alpha+1}\left(\rho\frac{\partial Y_{k}}{\partial t}-\dot{\omega}_{k}W_{k}\right)+\int_{0}^{R_{i}}rx^{\alpha}V\frac{\partial Y_{k}}{\partial rx}+\frac{\partial}{\partial rx}\left[rx^{\alpha}j_{k}\right]\, dr=0\end{equation}
 
 \end_inset
 
 The convection term may be integrated by noting that variations in 
-\begin_inset Formula $r^{\alpha}V$
+\begin_inset Formula $rx^{\alpha}V$
 \end_inset
 
  are negligible across this small distance.
  Furthermore, we recognize that 
-\begin_inset Formula $Y_{k}|_{r=0}=Y_{k,left}$
+\begin_inset Formula $Y_{k}|_{rx=0}=Y_{k,left}$
 \end_inset
 
  is the mass fraction corresponding to the inlet mixture (either reactants
  or products).
  The diffusion term may also be integrated, noting that 
-\begin_inset Formula $j_{k}|_{r=0}=0$
+\begin_inset Formula $j_{k}|_{rx=0}=0$
 \end_inset
 
  by the symmetry condition.
@@ -1594,7 +1594,7 @@ The convection term may be integrated by noting that variations in
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\frac{R_{i}^{\alpha+1}}{\alpha+1}\left(\rho\frac{\partial Y_{k}}{\partial t}-\dot{\omega}_{k}W_{k}\right)+\left(r^{\alpha}V\right)_{0}\left(Y_{k}-Y_{k,left}\right)+R_{i}^{\alpha}j_{k}=0\end{equation}
+\frac{R_{i}^{\alpha+1}}{\alpha+1}\left(\rho\frac{\partial Y_{k}}{\partial t}-\dot{\omega}_{k}W_{k}\right)+\left(rx^{\alpha}V\right)_{0}\left(Y_{k}-Y_{k,left}\right)+R_{i}^{\alpha}j_{k}=0\end{equation}
 
 \end_inset
 
@@ -1604,7 +1604,7 @@ Finally, we divide by the leading coefficient so that this equation scales
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\rho\frac{\partial Y_{k}}{\partial t}-\dot{\omega}_{k}W_{k}+\frac{\alpha+1}{R_{i}^{\alpha+1}}\left(r^{\alpha}V\right)_{0}\left(Y_{k}-Y_{k,left}\right)+\frac{\alpha+1}{R_{i}}j_{k}=0\label{eq:bc-species-integral}\end{equation}
+\rho\frac{\partial Y_{k}}{\partial t}-\dot{\omega}_{k}W_{k}+\frac{\alpha+1}{R_{i}^{\alpha+1}}\left(rx^{\alpha}V\right)_{0}\left(Y_{k}-Y_{k,left}\right)+\frac{\alpha+1}{R_{i}}j_{k}=0\label{eq:bc-species-integral}\end{equation}
 
 \end_inset
 
@@ -1613,7 +1613,7 @@ A similar analysis for the energy equation yields
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\rho\frac{\partial T}{\partial t}+\frac{1}{c_{p}}\sum_{k=1}^{K}\hat{h}_{k}\dot{\omega}_{k}+\frac{\alpha+1}{R_{i}^{\alpha+1}}\left(r^{\alpha}V\right)_{0}\left(T-T_{left}\right)-\frac{\alpha+1}{R_{i}c_{p}}\left(\lambda\frac{\partial T}{\partial r}\right)=0\label{eq:bc-energy-integral}\end{equation}
+\rho\frac{\partial T}{\partial t}+\frac{1}{c_{p}}\sum_{k=1}^{K}\hat{h}_{k}\dot{\omega}_{k}+\frac{\alpha+1}{R_{i}^{\alpha+1}}\left(rx^{\alpha}V\right)_{0}\left(T-T_{left}\right)-\frac{\alpha+1}{R_{i}c_{p}}\left(\lambda\frac{\partial T}{\partial rx}\right)=0\label{eq:bc-energy-integral}\end{equation}
 
 \end_inset
 
@@ -1623,7 +1623,7 @@ In the case of the momentum equation, we neglect the term associated with
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\rho\frac{\partial U}{\partial t}+\rho U^{2}-\rho_{\infty}\left(\frac{\partial a}{\partial t}+a^{2}\right)-\frac{\alpha+1}{R_{i}}\mu\frac{\partial U}{\partial r}=0\label{eq:bc-mom-integral}\end{equation}
+\rho\frac{\partial U}{\partial t}+\rho U^{2}-\rho_{\infty}\left(\frac{\partial a}{\partial t}+a^{2}\right)-\frac{\alpha+1}{R_{i}}\mu\frac{\partial U}{\partial rx}=0\label{eq:bc-mom-integral}\end{equation}
 
 \end_inset
 
@@ -1913,7 +1913,7 @@ The convective term is discretized using a second-order centered difference
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\left(V\frac{\partial T}{\partial r}\right)_{j}\approx V_{j}\left(\mathbb{C}_{j}^{-}T_{j-1}+\mathbb{C}_{j}T_{j}+\mathbb{C}_{j}^{+}T_{j+1}\right)\end{equation}
+\left(V\frac{\partial T}{\partial rx}\right)_{j}\approx V_{j}\left(\mathbb{C}_{j}^{-}T_{j-1}+\mathbb{C}_{j}T_{j}+\mathbb{C}_{j}^{+}T_{j+1}\right)\end{equation}
 
 \end_inset
 
@@ -1922,7 +1922,7 @@ We discretize the diffusive (conduction) term as
 
 \begin_layout Standard
 \begin_inset Formula \begin{equation}
-\left(\frac{1}{r^{\alpha}c_{p}}\frac{\partial}{\partial r}\left[r^{\alpha}q\right]\right)_{j}\approx\frac{1}{r_{j}c_{p,j}}\frac{r_{j+1/2}q_{j+1/2}-r_{j-1/2}q_{j-1/2}}{\mathbb{D}_{j}}\end{equation}
+\left(\frac{1}{rx^{\alpha}c_{p}}\frac{\partial}{\partial rx}\left[rx^{\alpha}q\right]\right)_{j}\approx\frac{1}{r_{j}c_{p,j}}\frac{r_{j+1/2}q_{j+1/2}-r_{j-1/2}q_{j-1/2}}{\mathbb{D}_{j}}\end{equation}
 
 \end_inset
 
@@ -1937,7 +1937,7 @@ The enthalpy flux term is discretized as
 \color none
 
 \begin_inset Formula \begin{equation}
-\left(\frac{S}{c_{p}}\frac{\partial T}{\partial r}\right)_{j}\approx\frac{1}{c_{p,j}}\frac{\left(S_{j+1/2}+S_{j-1/2}\right)}{2}\left(\mathbb{C}_{j}^{-}T_{j-1}+\mathbb{C}_{j}T_{j}+\mathbb{C}_{j}^{+}T_{j+1}\right)\end{equation}
+\left(\frac{S}{c_{p}}\frac{\partial T}{\partial rx}\right)_{j}\approx\frac{1}{c_{p,j}}\frac{\left(S_{j+1/2}+S_{j-1/2}\right)}{2}\left(\mathbb{C}_{j}^{-}T_{j-1}+\mathbb{C}_{j}T_{j}+\mathbb{C}_{j}^{+}T_{j+1}\right)\end{equation}
 
 \end_inset
 
@@ -2073,7 +2073,7 @@ The boundary conditions must also be written as ODEs or algebraic equations.
 \begin_layout Standard
 For boundaries where the composition and temperature are fixed, e.g.
  both boundaries of the free flame, or at the 
-\begin_inset Formula $r=\infty$
+\begin_inset Formula $rx=\infty$
 \end_inset
 
  boundary in the twin and curved flame configurations, we have 
@@ -2135,7 +2135,7 @@ where
 
 \begin_layout Standard
 For boundary conditions at 
-\begin_inset Formula $r=0$
+\begin_inset Formula $rx=0$
 \end_inset
 
 , discretized forms of equations 
@@ -2163,11 +2163,11 @@ reference "eq:bc-mom-integral"
  Most of the terms in these equations use the same discretization as terms
  elsewhere in the domain, with the exception of the diffusive term.
  Since we know that 
-\begin_inset Formula $\partial T/\partial r=0$
+\begin_inset Formula $\partial T/\partial rx=0$
 \end_inset
 
  at 
-\begin_inset Formula $r=0$
+\begin_inset Formula $rx=0$
 \end_inset
 
 , 
@@ -2811,13 +2811,13 @@ reference "eq:drhodt"
 \begin_layout Standard
 Now, take the discretized energy and species equations, and write them as
 \begin_inset Formula \begin{equation}
-\rho_{j}\frac{dT_{j}}{dt}=-V_{j}\frac{\partial T_{j}}{\partial r}-\mathbb{S}_{T,j}\end{equation}
+\rho_{j}\frac{dT_{j}}{dt}=-V_{j}\frac{\partial T_{j}}{\partial rx}-\mathbb{S}_{T,j}\end{equation}
 
 \end_inset
 
 
 \begin_inset Formula \[
-\rho_{j}\frac{dY_{k,j}}{dt}=-V_{j}\frac{\partial Y_{k,j}}{\partial r}-\mathbb{S}_{k,j}\]
+\rho_{j}\frac{dY_{k,j}}{dt}=-V_{j}\frac{\partial Y_{k,j}}{\partial rx}-\mathbb{S}_{k,j}\]
 
 \end_inset
 
@@ -2832,7 +2832,7 @@ where
  are the sums of the remaining terms in the respective equations.
  The continuity equation can then be rewritten as
 \begin_inset Formula \begin{equation}
-\frac{1}{T_{j}}\left(V_{j}\frac{\partial T_{j}}{\partial r}+\mathbb{S}_{T,j}\right)+\sum_{k}\frac{\bar{W}_{j}}{W_{k}}\left(V_{j}\frac{\partial Y_{k,j}}{\partial r}+\mathbb{S}_{k,j}\right)+\frac{r_{j}^{\alpha}V_{j}-r_{j-1}^{\alpha}V_{j-1}}{r_{j+1/2}^{\alpha}h_{j-1}}+\rho_{j}U_{j}=0\end{equation}
+\frac{1}{T_{j}}\left(V_{j}\frac{\partial T_{j}}{\partial rx}+\mathbb{S}_{T,j}\right)+\sum_{k}\frac{\bar{W}_{j}}{W_{k}}\left(V_{j}\frac{\partial Y_{k,j}}{\partial rx}+\mathbb{S}_{k,j}\right)+\frac{r_{j}^{\alpha}V_{j}-r_{j-1}^{\alpha}V_{j-1}}{r_{j+1/2}^{\alpha}h_{j-1}}+\rho_{j}U_{j}=0\end{equation}
 
 \end_inset
 
@@ -2842,7 +2842,7 @@ Solving for
 
  gives
 \begin_inset Formula \begin{equation}
-V_{j}=\frac{{\displaystyle -\frac{\mathbb{S}_{T,j}}{T_{j}}-\sum_{k}\frac{\bar{W}_{j}}{W_{k}}\mathbb{S}_{k,j}-\rho_{j}U_{j}+\frac{r_{j-1}^{\alpha}V_{j-1}}{r_{j+1/2}^{\alpha}h_{j-1}}}}{{\displaystyle \frac{1}{T}\frac{\partial T_{j}}{\partial r}+\sum_{k}\frac{\bar{W}_{j}}{W_{k}}\frac{\partial Y_{k,j}}{\partial r}+\frac{r_{j}^{\alpha}}{h_{j-1}r_{j+1/2}^{\alpha}}}}\end{equation}
+V_{j}=\frac{{\displaystyle -\frac{\mathbb{S}_{T,j}}{T_{j}}-\sum_{k}\frac{\bar{W}_{j}}{W_{k}}\mathbb{S}_{k,j}-\rho_{j}U_{j}+\frac{r_{j-1}^{\alpha}V_{j-1}}{r_{j+1/2}^{\alpha}h_{j-1}}}}{{\displaystyle \frac{1}{T}\frac{\partial T_{j}}{\partial rx}+\sum_{k}\frac{\bar{W}_{j}}{W_{k}}\frac{\partial Y_{k,j}}{\partial rx}+\frac{r_{j}^{\alpha}}{h_{j-1}r_{j+1/2}^{\alpha}}}}\end{equation}
 
 \end_inset
 
@@ -2864,13 +2864,13 @@ This formula can be succesively applied to find
 
 
 \begin_inset Formula \begin{equation}
-\frac{dT_{j}}{dt}=-\frac{1}{\rho_{j}}\left(V_{j}\frac{\partial T_{j}}{\partial r}+\mathbb{S}_{T,j}\right)\end{equation}
+\frac{dT_{j}}{dt}=-\frac{1}{\rho_{j}}\left(V_{j}\frac{\partial T_{j}}{\partial rx}+\mathbb{S}_{T,j}\right)\end{equation}
 
 \end_inset
 
 
 \begin_inset Formula \begin{equation}
-\frac{dY_{k,j}}{dt}=-\frac{1}{\rho_{j}}\left(V_{j}\frac{\partial Y_{k,j}}{\partial r}+\mathbb{S}_{k,j}\right)\end{equation}
+\frac{dY_{k,j}}{dt}=-\frac{1}{\rho_{j}}\left(V_{j}\frac{\partial Y_{k,j}}{\partial rx}+\mathbb{S}_{k,j}\right)\end{equation}
 
 \end_inset
 
@@ -2896,7 +2896,7 @@ ing the mass flux per radian
 \end_inset
 
 at the 
-\begin_inset Formula $r=0$
+\begin_inset Formula $rx=0$
 \end_inset
 
  boundary.
@@ -2916,7 +2916,7 @@ at the
 
 The current flame radius is defined as
 \begin_inset Formula \begin{equation}
-R_{f}\equiv\frac{\int_{0}^{\infty}q'''r\, dr}{\int_{0}^{\infty}q'''\, dr}\label{eq:flame-radius}\end{equation}
+R_{f}\equiv\frac{\int_{0}^{\infty}q'''rx\, dr}{\int_{0}^{\infty}q'''\, dr}\label{eq:flame-radius}\end{equation}
 
 \end_inset
 
@@ -3007,7 +3007,7 @@ where
  is a tolerance parameter on the order of 0.1.
  Gradients of the scalar quantities are subject to an similar criterion
 \begin_inset Formula \begin{equation}
-\left|\left(\frac{\partial F}{\partial r}\right)_{j+1}-\left(\frac{\partial F}{\partial r}\right)_{j}\right|<\varphi_{2}\left(\max_{j}\frac{\partial F}{\partial r}-\min_{j}\frac{\partial F}{\partial r}\right)\end{equation}
+\left|\left(\frac{\partial F}{\partial rx}\right)_{j+1}-\left(\frac{\partial F}{\partial rx}\right)_{j}\right|<\varphi_{2}\left(\max_{j}\frac{\partial F}{\partial rx}-\min_{j}\frac{\partial F}{\partial rx}\right)\end{equation}
 
 \end_inset
 
@@ -3079,7 +3079,7 @@ The location of the boundary grid points is also modified dynamically.
 \end_inset
 
  as 
-\begin_inset Formula $r\to\pm\infty$
+\begin_inset Formula $rx\to\pm\infty$
 \end_inset
 
  even when using fixed-value boundary conditions.

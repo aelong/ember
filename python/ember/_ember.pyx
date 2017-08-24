@@ -700,9 +700,9 @@ cdef class FlameSolver:
         def __get__(self):
             return getArray_Vec(self.solver.grid.hh)
 
-    property rphalf:
+    property rx_half:
         def __get__(self):
-            return getArray_Vec(self.solver.grid.rphalf)
+            return getArray_Vec(self.solver.grid.rx_half)
 
     property jFick:
         def __get__(self):
