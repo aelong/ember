@@ -32,12 +32,14 @@ void OneDimGrid::setOptions(const ConfigOptions& options)
     fixedLeftLoc = options.fixedLeftLoc;
     twinFlame = options.twinFlame;
     curvedFlame = options.curvedFlame;
+    axiJetFlame = options.axiJetFlame;
 
     boundaryTol = options.boundaryTol;
     boundaryTolRm = options.boundaryTolRm;
     unstrainedDownstreamWidth = options.unstrainedDownstreamWidth;
     addPointCount = options.addPointCount;
     alpha = options.gridAlpha;
+    beta = options.gridBeta;
 }
 
 void OneDimGrid::updateValues()
@@ -49,15 +51,15 @@ void OneDimGrid::updateValues()
     cfp.resize(jj);
 
     dlj.resize(jj);
-    rphalf.resize(jj);
-    r.resize(jj+1);
+    rx_half.resize(jj);
+    rx.resize(jj+1);
     dampVal.resize(jj+1);
 
     for (index_t j=0; j<x.rows()-1; j++) {
         hh[j] = x[j+1]-x[j];
-        rphalf[j] =  pow(0.5*(x[j]+x[j+1]),alpha);
+        rx_half[j] =  pow(0.5*(x[j]+x[j+1]),alpha);
     }
-    r = x.pow(alpha);
+    rx = x.pow(alpha);
 
     for (index_t j=1; j<x.rows()-1; j++) {
         cfp[j] = hh[j-1]/(hh[j]*(hh[j]+hh[j-1]));
@@ -328,7 +330,7 @@ void OneDimGrid::adapt(vector<dvector>& y)
                        leftBC == BoundaryCondition::WallFlux))
         {
             if (debugParameters::debugAdapt) {
-                logFile.write("Adapt: no removal - fixed grid near r = 0.");
+                logFile.write("Adapt: no removal - fixed grid near rx = 0.");
             }
             remove = false;
         }
@@ -848,14 +850,15 @@ void OneDimGrid::updateBoundaryIndices(void) {
 
 GridBased::GridBased()
     : x(grid.x)
-    , r(grid.r)
-    , rphalf(grid.rphalf)
+    , rx(grid.rx)
+    , rx_half(grid.rx_half)
     , hh(grid.hh)
     , dlj(grid.dlj)
     , cfm(grid.cfm)
     , cf(grid.cf)
     , cfp(grid.cfp)
     , alpha(grid.alpha)
+    , beta(grid.beta)
     , nPoints(grid.nPoints)
     , jj(grid.jj)
 {

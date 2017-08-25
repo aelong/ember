@@ -24,35 +24,35 @@ int ConvectionSystemUTW::f(const realtype t, const sdVector& y, sdVector& ydot)
     if (continuityBC == ContinuityBoundaryCondition::Left) {
         rV[0] = rVzero;
         for (size_t j=0; j<nPoints-1; j++) {
-            rV[j+1] = rV[j] - hh[j] * (drhodt[j] + rho[j] * U[j] * rphalf[j]);
+            rV[j+1] = rV[j] - hh[j] * (drhodt[j] + rho[j] * U[j] * rx_half[j]);
         }
     } else if (continuityBC == ContinuityBoundaryCondition::Zero) {
         // jContBC is the point just to the right of the stagnation point
         size_t j = jContBC;
-        double dVdx0 = - drhodt[j] - rho[j] * U[j] * rphalf[j];
+        double dVdx0 = - drhodt[j] - rho[j] * U[j] * rx_half[j];
         if (jContBC != 0) {
-            dVdx0 = 0.5 * dVdx0 - 0.5 * (drhodt[j-1] + rho[j-1] * U[j-1] * rphalf[j-1]);
+            dVdx0 = 0.5 * dVdx0 - 0.5 * (drhodt[j-1] + rho[j-1] * U[j-1] * rx_half[j-1]);
         }
 
         rV[j] = (x[j] - xVzero) * dVdx0;
         for (j=jContBC; j<jj; j++) {
-            rV[j+1] = rV[j] - hh[j] * (drhodt[j] + rho[j] * U[j] * rphalf[j]);
+            rV[j+1] = rV[j] - hh[j] * (drhodt[j] + rho[j] * U[j] * rx_half[j]);
         }
 
         if (jContBC != 0) {
             j = jContBC-1;
-//            dVdx0 = - drhodt[j] - rho[j] * U[j] * rphalf[j];
+//            dVdx0 = - drhodt[j] - rho[j] * U[j] * rx_half[j];
             rV[j] = (x[j] - xVzero) * dVdx0;
             for (j=jContBC-1; j>0; j--) {
-                rV[j-1] = rV[j] + hh[j-1] * (drhodt[j-1] + rho[j-1] * U[j-1] * rphalf[j-1]);
+                rV[j-1] = rV[j] + hh[j-1] * (drhodt[j-1] + rho[j-1] * U[j-1] * rx_half[j-1]);
             }
         }
     } else {
         for (size_t j=jContBC; j<nPoints-1; j++) {
-            rV[j+1] = rV[j] - hh[j] * (drhodt[j] + rho[j] * U[j] * rphalf[j]);
+            rV[j+1] = rV[j] - hh[j] * (drhodt[j] + rho[j] * U[j] * rx_half[j]);
         }
         for (size_t j=jContBC; j>0; j--) {
-            rV[j-1] = rV[j] + hh[j-1] * (drhodt[j] + rho[j] * U[j] * rphalf[j]);
+            rV[j-1] = rV[j] + hh[j-1] * (drhodt[j] + rho[j] * U[j] * rx_half[j]);
         }
     }
 
@@ -317,7 +317,7 @@ int ConvectionSystemY::f(const realtype t, const sdVector& y, sdVector& ydot)
         grid.leftBC == BoundaryCondition::WallFlux)
     {
         double centerVol = pow(x[1],alpha+1) / (alpha+1);
-        // Note: v[0] actually contains r*v[0] in this case
+        // Note: v[0] actually contains rx*v[0] in this case
         double rvzero_mod = std::max(v[0], 0.0);
         ydot[0] = -rvzero_mod * (y[0] - Yleft) / centerVol + splitConst[0];
     } else { // FixedValue or ZeroGradient

@@ -13,8 +13,8 @@ void DiffusionSystem::get_A(dvec& a, dvec& b, dvec& c)
     assert(mathUtils::notnan(B));
 
     for (size_t j=1; j<=N-2; j++) {
-        c1[j] = 0.5*B[j]/(dlj[j]*r[j]);
-        c2[j] = rphalf[j]*(D[j]+D[j+1])/hh[j];
+        c1[j] = 0.5*B[j]/(dlj[j]*rx[j]);
+        c2[j] = rx_half[j]*(D[j]+D[j+1])/hh[j];
     }
 
     assert(mathUtils::notnan(c1));
