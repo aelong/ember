@@ -37,6 +37,7 @@ public:
     dvec dampVal;
 
     int alpha; //!< Domain curvature parameter. 0: planar, 1: cylindrical
+    int beta; //!< Domain curvature parameter. 1: Axisymmetric jet, 1: cylindrical, curved
     size_t ju; //!< Index corresponding to the unburned mixture
     size_t jb; //!< Index corresponding to the burned mixture
 
@@ -98,6 +99,9 @@ public:
     //! `true` if the flame is curved (corresponding to #alpha = 1)
     bool curvedFlame;
 
+    //! `true` if the flame is opposed axisymmetric jets (corresponding to #beta = 1)
+    bool axiJetFlame;
+
     //! Relative tolerance used to extend the domain in order to satisfy zero-
     //! gradient boundary conditions.
     double boundaryTol;
@@ -118,8 +122,8 @@ public:
     dvec cfp; //!< Coefficient for y[j+1] in first centered difference
     dvec dlj; //!< Average of left and right grid spacing
     dvec hh; //!< Grid spacing between x[j] and x[j+1]
-    dvec rphalf; //!< "radius" at x[j+1/2]. Equal to 1 for planar geometries.
-    dvec r; //!< "radius" at x[j]. Equal to 1 for planar geometries.
+    dvec rx_half; //!< "radius" at x[j+1/2]. Equal to 1 for planar geometries.
+    dvec rx; //!< "radius" at x[j]. Equal to 1 for planar geometries.
     size_t nVars; //!< number of variables at each grid point
 
     //! Only the first nAdapt variables at each point are used for adaptation
@@ -242,14 +246,15 @@ public:
 protected:
     // local names for some things that are part of the grid
     dvec& x; //!< The coordinates of the grid points [m].
-    dvec& r; //!< "radius" at x[j]. Equal to 1 for planar geometries.
-    dvec& rphalf; //!< "radius" at x[j+1/2]. Equal to 1 for planar geometries.
+    dvec& rx; //!< "radius" at x[j]. Equal to 1 for planar geometries.
+    dvec& rx_half; //!< "radius" at x[j+1/2]. Equal to 1 for planar geometries.
     dvec& hh; //!< Grid spacing between x[j] and x[j+1]
     dvec& dlj; //!< Average of left and right grid spacing
     dvec& cfm; //!< Coefficient for y[j-1] in first centered difference
     dvec& cf; //!< Coefficient for y[j] in first centered difference
     dvec& cfp; //!< Coefficient for y[j+1] in first centered difference
-    int& alpha; //!< curved grid exponent. alpha = 1 for curved flames, 0 for planar flames.
+    int& alpha; //!< curved grid exponent. alpha = 1 for curved flames, 0 for planar flames and axisymmetric jet flames.
+    int& beta; //!< curved grid exponent. beta = 1 for axisymmetric jet flames, 0 for planar flames and curved flames.
 
     size_t& nPoints; //!< number of grid point
     size_t& jj; //!< index of last grid point (`== nPoints-1`)

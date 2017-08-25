@@ -238,6 +238,7 @@ private:
 
     //! Solver for #utwSystem
     boost::shared_ptr<SundialsCvode> utwSolver;
+//    SundialsIda* utwSolver; //aelong test for arclength
 
     //! Systems used to solve the convection term for each species.
     boost::ptr_vector<ConvectionSystemY> speciesSystems;

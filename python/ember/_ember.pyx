@@ -180,6 +180,8 @@ cdef class ConfigOptions:
         opts.nThreads = G.nThreads
         opts.curvedFlame = G.curvedFlame
         opts.gridAlpha = 1 if opts.curvedFlame else 0
+        opts.axiJetFlame = G.axiJetFlame
+        opts.gridBeta = 1 if opts.axiJetFlame else 0
         opts.twinFlame = G.twinFlame
         opts.chemistryIntegrator = G.chemistryIntegrator
         opts.splittingMethod = G.splittingMethod
@@ -426,7 +428,7 @@ cdef class FlameSolver:
         return done
 
     def _setup_interp_data(self, data):
-        cdef np.ndarray[np.double_t, ndim=1] r = np.ascontiguousarray(data.r)
+        cdef np.ndarray[np.double_t, ndim=1] rx = np.ascontiguousarray(data.rx)
         cdef np.ndarray[np.double_t, ndim=1] z = np.ascontiguousarray(data.z)
 
         cdef np.ndarray[np.double_t, ndim=2] T = np.ascontiguousarray(data.T)
@@ -435,16 +437,16 @@ cdef class FlameSolver:
 
         nz, nr = vz.shape[0], vz.shape[1]
         assert T.shape[0] == vr.shape[0] == vz.shape[0] == len(z)
-        assert T.shape[1] == vr.shape[1] == vz.shape[1] == len(r)
+        assert T.shape[1] == vr.shape[1] == vz.shape[1] == len(rx)
 
         self.solver.vzInterp.setup(map_matrix(&vz[0,0], nr, nz, nr, 1),
-                                   map_vector(&r[0], nr, 1),
+                                   map_vector(&rx[0], nr, 1),
                                    map_vector(&z[0], nz, 1))
         self.solver.vrInterp.setup(map_matrix(&vr[0,0], nr, nz, nr, 1),
-                                   map_vector(&r[0], nr, 1),
+                                   map_vector(&rx[0], nr, 1),
                                    map_vector(&z[0], nz, 1))
         self.solver.TInterp.setup(map_matrix(&T[0,0], nr, nz, nr, 1),
-                                  map_vector(&r[0], nr, 1),
+                                  map_vector(&rx[0], nr, 1),
                                   map_vector(&z[0], nz, 1))
 
     property heatLossFunction:
@@ -547,6 +549,10 @@ cdef class FlameSolver:
     property gridAlpha:
         def __get__(self):
             return self.solver.grid.alpha
+
+    property gridBeta:
+        def __get__(self):
+            return self.solver.grid.beta
 
     property T:
         def __get__(self):
@@ -700,9 +706,9 @@ cdef class FlameSolver:
         def __get__(self):
             return getArray_Vec(self.solver.grid.hh)
 
-    property rphalf:
+    property rx_half:
         def __get__(self):
-            return getArray_Vec(self.solver.grid.rphalf)
+            return getArray_Vec(self.solver.grid.rx_half)
 
     property jFick:
         def __get__(self):

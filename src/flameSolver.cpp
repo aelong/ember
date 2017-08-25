@@ -597,11 +597,11 @@ void FlameSolver::updateCrossTerms()
     for (size_t j=1; j<jj; j++) {
         sumcpj[j] = 0;
         for (size_t k=0; k<nSpec; k++) {
-            dYdtCross(k,j) = -0.5 / (r[j] * rho[j] * dlj[j]) *
-                (rphalf[j] * (Y(k,j) + Y(k,j+1)) * jCorr[j] -
-                 rphalf[j-1] * (Y(k,j-1) + Y(k,j)) * jCorr[j-1]);
-            dYdtCross(k,j) -= 1 / (r[j] * rho[j] * dlj[j]) *
-                (rphalf[j] * jSoret(k,j) - rphalf[j-1] * jSoret(k,j-1));
+            dYdtCross(k,j) = -0.5 / (rx[j] * rho[j] * dlj[j]) *
+                (rx_half[j] * (Y(k,j) + Y(k,j+1)) * jCorr[j] -
+                 rx_half[j-1] * (Y(k,j-1) + Y(k,j)) * jCorr[j-1]);
+            dYdtCross(k,j) -= 1 / (rx[j] * rho[j] * dlj[j]) *
+                (rx_half[j] * jSoret(k,j) - rx_half[j-1] * jSoret(k,j-1));
             sumcpj[j] += 0.5*(cpSpec(k,j) + cpSpec(k,j+1)) / W[k] *
                 (jFick(k,j) + jSoret(k,j) + 0.5 * (Y(k,j) + Y(k,j+1)) * jCorr[j]);
         }
@@ -943,6 +943,7 @@ double FlameSolver::getFlamePosition(void)
 void FlameSolver::loadProfile(void)
 {
     grid.alpha = (options.curvedFlame) ? 1 : 0;
+    grid.beta = (options.axiJetFlame) ? 1 : 0;
     grid.unburnedLeft = options.unburnedLeft;
 
     // Read initial condition specified in the configuration file
