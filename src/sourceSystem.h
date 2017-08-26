@@ -5,6 +5,7 @@
 #include "qssintegrator.h"
 #include "quasi2d.h"
 #include "callback.h"
+#include "grid.h"
 
 #include <boost/shared_ptr.hpp>
 
@@ -14,7 +15,7 @@ class ScalarFunction;
 class ConfigOptions;
 
 //! Base class used to integrate the chemical source term at a single point.
-class SourceSystem
+class SourceSystem //: public GridBased //aelong 8/26/2017
 {
 public:
     SourceSystem();
@@ -100,6 +101,7 @@ public:
 
     double U; //!< tangential velocity
     double T; //!< temperature
+    bool beta; //!< curvature parameter for axisymmetric jets (aelong 8/26/2017)
     dvec Y; //!< species mass fraction
 
     //! Extra constant term introduced by splitting

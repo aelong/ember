@@ -37,10 +37,10 @@ void FlameSolver::setOptions(const ConfigOptions& _options)
     grid.setOptions(_options);
 
     //aelong 8/25/17 test
-    std::cout << "CurvedFlame is: "<<grid.curvedFlame<<std::endl;
-    std::cout << "Alpha is: "<<grid.alpha<<std::endl;
-    std::cout << "AxiJetFlame is: "<<grid.axiJetFlame<<std::endl;
-    std::cout << "Beta is: "<<grid.beta<<std::endl;
+//    std::cout << "CurvedFlame is: "<<grid.curvedFlame<<std::endl;
+//    std::cout << "Alpha is: "<<grid.alpha<<std::endl;
+//    std::cout << "AxiJetFlame is: "<<grid.axiJetFlame<<std::endl;
+//    std::cout << "Beta is: "<<grid.beta<<std::endl;
 }
 
 void FlameSolver::initialize(void)
