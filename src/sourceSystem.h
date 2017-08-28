@@ -15,7 +15,7 @@ class ScalarFunction;
 class ConfigOptions;
 
 //! Base class used to integrate the chemical source term at a single point.
-class SourceSystem //: public GridBased //aelong 8/26/2017
+class SourceSystem
 {
 public:
     SourceSystem();
@@ -101,7 +101,7 @@ public:
 
     double U; //!< tangential velocity
     double T; //!< temperature
-    bool beta; //!< curvature parameter for axisymmetric jets (aelong 8/26/2017)
+    bool beta; //!< curvature parameter for axisymmetric jet flames
     dvec Y; //!< species mass fraction
 
     //! Extra constant term introduced by splitting

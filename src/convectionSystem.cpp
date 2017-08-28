@@ -16,14 +16,12 @@ ConvectionSystemUTW::ConvectionSystemUTW()
 
 int ConvectionSystemUTW::f(const realtype t, const sdVector& y, sdVector& ydot)
 {
-
-    //std::cout << "In ConvectionSystemUTW and Beta is: "<<grid.beta<<std::endl; // (aelong 8/26/2017)
-
     unroll_y(y);
     // *** Update auxiliary data ***
     rho = gas->pressure * Wmx / (Cantera::GasConstant * T);
 
     // *** Calculate V ***
+    //aelong added beta for axiJetflames
     if (continuityBC == ContinuityBoundaryCondition::Left) {
         rV[0] = rVzero;
         for (size_t j=0; j<nPoints-1; j++) {
@@ -113,7 +111,7 @@ int ConvectionSystemUTW::f(const realtype t, const sdVector& y, sdVector& ydot)
         // Outflow  at the boundary
         dUdt[jj] = splitConstU[jj] - V[jj] * (U[jj]-U[jj-1])/hh[jj-1]/rho[jj];
         dTdt[jj] = splitConstT[jj] - V[jj] * (T[jj]-T[jj-1])/hh[jj-1]/rho[jj];
-       dWdt[jj] = splitConstW[jj] - V[jj] * (Wmx[jj]-Wmx[jj-1])/hh[jj-1]/rho[jj];
+        dWdt[jj] = splitConstW[jj] - V[jj] * (Wmx[jj]-Wmx[jj-1])/hh[jj-1]/rho[jj];
     }
 
     roll_ydot(ydot);
