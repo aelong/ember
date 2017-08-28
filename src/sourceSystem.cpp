@@ -113,7 +113,7 @@ void SourceSystemCVODE::setOptions(ConfigOptions& opts)
 {
     SourceSystem::setOptions(opts);
     beta = opts.axiJetFlame;
-    std::cout <<  "In SourceSystemCVODE::setOptions Beta is: "<<beta<<std::endl; // aelong 8/26/2017
+    //std::cout <<  "In SourceSystemCVODE::setOptions Beta is: "<<beta<<std::endl; // aelong 8/26/2017
     integrator->abstol[kMomentum] = options->integratorMomentumAbsTol;
     integrator->abstol[kEnergy] = options->integratorEnergyAbsTol;
     for (size_t k=0; k<nSpec; k++) {
