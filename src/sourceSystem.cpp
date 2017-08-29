@@ -468,7 +468,7 @@ void SourceSystemQSS::odefun(double t, const dvec& y, dvec& q, dvec& d,
     double scale;
     if (!quasi2d) {
         scale = 1.0;
-        dUdtQ = rhou/rho*(dadt/pow(2, beta) + a*a/pow(2, 2*beta)) - U*U + splitConst[kMomentum]; //aelong added beta for axiJetflames
+        dUdtQ = rhou/rho*(dadt/pow(2.0, beta) + a*a/pow(2.0, 2*beta)) - U*U + splitConst[kMomentum]; //aelong added beta for axiJetflames
         dUdtD = 0;
         dTdtQ = qDot/(rho*cp) + splitConst[kEnergy];
     } else {
