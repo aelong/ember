@@ -64,7 +64,7 @@ public:
     virtual void initialize(size_t nSpec);
 
     //! Set integrator tolerances and other parameters
-    virtual void setOptions(ConfigOptions& options_) { options = &options_; }
+    virtual void setOptions(ConfigOptions& options_);
 
     void setTimers(PerfTimer* reactionRates, PerfTimer* thermo,
                    PerfTimer* jacobian);

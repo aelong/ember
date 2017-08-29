@@ -44,6 +44,12 @@ double SourceSystem::getQdotIgniter(double t)
     }
 }
 
+void SourceSystem::setOptions(ConfigOptions& options_)
+{
+    options = &options_;
+    beta = &options_.axiJetFlame;
+}
+
 void SourceSystem::initialize(size_t new_nSpec)
 {
     nSpec = new_nSpec;
@@ -112,7 +118,7 @@ void SourceSystemCVODE::initialize(size_t new_nSpec)
 void SourceSystemCVODE::setOptions(ConfigOptions& opts)
 {
     SourceSystem::setOptions(opts);
-    beta = opts.axiJetFlame;
+
     integrator->abstol[kMomentum] = options->integratorMomentumAbsTol;
     integrator->abstol[kEnergy] = options->integratorEnergyAbsTol;
     for (size_t k=0; k<nSpec; k++) {
@@ -416,7 +422,6 @@ void SourceSystemQSS::setOptions(ConfigOptions& opts)
 {
     SourceSystem::setOptions(opts);
 
-    beta = opts.axiJetFlame;
     integrator.epsmin = options->qss_epsmin;
     integrator.epsmax = options->qss_epsmax;
     integrator.dtmin = options->qss_dtmin;
