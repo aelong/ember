@@ -525,6 +525,9 @@ void FlameSolver::resizeAuxiliary()
     convectionSystem.resize(nPoints, nSpec, state);
     convectionSystem.setLeftBC(Tleft, Yleft);
 
+    convectionSystem.utwSystem.setStrainFunction(strainfunc); //aelong 9.11.17
+    convectionSystem.utwSystem.setRhou(rhou); //aelong 9.11.17
+
     if (options.quasi2d) {
         convectionSystem.setupQuasi2D(vzInterp, vrInterp);
     }

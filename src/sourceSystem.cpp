@@ -150,7 +150,7 @@ int SourceSystemCVODE::f(const realtype t, const sdVector& y, sdVector& ydot)
     double scale;
     if (!quasi2d) {
         scale = 1.0;
-        dUdt = - U*U + rhou/rho*(dadt/pow(2.0,beta) + a*a/pow(2.0,2*beta)) + splitConst[kMomentum]; //aelong added beta for axiJetflames
+        dUdt = - U*U + splitConst[kMomentum];
         qDot = - (wDot * hk).sum() + getQdotIgniter(t);
         if (heatLoss && options->alwaysUpdateHeatFlux) {
             qDot -= heatLoss->eval(x, t, U, T, Y);
@@ -473,7 +473,7 @@ void SourceSystemQSS::odefun(double t, const dvec& y, dvec& q, dvec& d,
     double scale;
     if (!quasi2d) {
         scale = 1.0;
-        dUdtQ = rhou/rho*(dadt/pow(2.0, beta) + a*a/pow(2.0, 2*beta)) - U*U + splitConst[kMomentum]; //aelong added beta for axiJetflames
+        dUdtQ = - U*U + splitConst[kMomentum]; //aelong added beta for axiJetflames
         dUdtD = 0;
         dTdtQ = qDot/(rho*cp) + splitConst[kEnergy];
     } else {

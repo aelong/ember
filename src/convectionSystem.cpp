@@ -16,6 +16,13 @@ ConvectionSystemUTW::ConvectionSystemUTW()
 
 int ConvectionSystemUTW::f(const realtype t, const sdVector& y, sdVector& ydot)
 {
+//////aelong 9/8/17
+//    double a = strainFunction->a(t);
+//    double dadt = strainFunction->dadt(t);
+//
+//    std::cout << "In ConvectionSystemUTW::f and a is" << a << std::endl;
+//////aelong end
+
     unroll_y(y);
     // *** Update auxiliary data ***
     rho = gas->pressure * Wmx / (Cantera::GasConstant * T);
@@ -74,7 +81,9 @@ int ConvectionSystemUTW::f(const realtype t, const sdVector& y, sdVector& ydot)
 
 
     // *** Calculate dW/dt, dU/dt, dT/dt
-
+    double a = strainFunction->a(t); //aelong 9.11.17
+    double dadt = strainFunction->dadt(t); //aelong 9.11.17
+    
     // Left boundary conditions.
     // Convection term only contributes in the ControlVolume case
     dUdt[0] = splitConstU[0]; // zero-gradient condition for U is handled in diffusion term
@@ -95,7 +104,7 @@ int ConvectionSystemUTW::f(const realtype t, const sdVector& y, sdVector& ydot)
 
     // Intermediate points
     for (size_t j=1; j<jj; j++) {
-        dUdt[j] = -V[j] * dUdx[j] / rho[j] + splitConstU[j];
+        dUdt[j] = -V[j] * dUdx[j] / rho[j] + rhou/rho[j]*(dadt/pow(2.0, beta) + a*a/pow(2.0, 2*beta)) + splitConstU[j]; //aelong 9.11.17 added a terms
         dTdt[j] = -V[j] * dTdx[j] / rho[j] + splitConstT[j];
         dWdt[j] = -V[j] * dWdx[j] / rho[j] + splitConstW[j];
     }
