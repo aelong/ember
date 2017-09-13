@@ -86,7 +86,7 @@ int ConvectionSystemUTW::f(const realtype t, const sdVector& y, sdVector& ydot)
     
     // Left boundary conditions.
     // Convection term only contributes in the ControlVolume case
-    dUdt[0] = splitConstU[0]; // zero-gradient condition for U is handled in diffusion term
+    dUdt[0] = splitConstU[0]+rhou/rho[0]*(dadt/pow(2.0, beta) + a*a/pow(2.0, 2*beta)); //aelong 9.13.17 // zero-gradient condition for U is handled in diffusion term
 
     if (grid.leftBC == BoundaryCondition::ControlVolume ||
         grid.leftBC == BoundaryCondition::WallFlux)
@@ -113,12 +113,12 @@ int ConvectionSystemUTW::f(const realtype t, const sdVector& y, sdVector& ydot)
     if (rV[jj] < 0  || grid.rightBC == BoundaryCondition::FixedValue) {
         // Convection term has nothing to contribute in this case,
         // So only the value from the other terms remains
-        dUdt[jj] = splitConstU[jj];
+        dUdt[jj] = splitConstU[jj]+rhou/rho[jj]*(dadt/pow(2.0, beta) + a*a/pow(2.0, 2*beta)); //aelong 9.13.17
         dTdt[jj] = splitConstT[jj];
         dWdt[jj] = splitConstW[jj];
     } else {
         // Outflow  at the boundary
-        dUdt[jj] = splitConstU[jj] - V[jj] * (U[jj]-U[jj-1])/hh[jj-1]/rho[jj];
+        dUdt[jj] = splitConstU[jj] - V[jj] * (U[jj]-U[jj-1])/hh[jj-1]/rho[jj]+rhou/rho[jj]*(dadt/pow(2.0, beta) + a*a/pow(2.0, 2*beta)); //aelong 9.13.17
         dTdt[jj] = splitConstT[jj] - V[jj] * (T[jj]-T[jj-1])/hh[jj-1]/rho[jj];
         dWdt[jj] = splitConstW[jj] - V[jj] * (Wmx[jj]-Wmx[jj-1])/hh[jj-1]/rho[jj];
     }
