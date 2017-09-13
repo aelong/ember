@@ -97,6 +97,16 @@ def load(filename):
     elif filename.endswith('npz'):
         return NpzStruct(filename)
 
+def get_dTmax_point(Struct):
+    Tvec = Struct.T
+    xvec = Struct.x
+    dTdx = np.gradient(Tvec) / np.gradient(xvec)
+    dTdx_abs = np.asarray([np.abs(x) for x in dTdx])
+    max_index = dTdx_abs.argmax()
+    T_s = Tvec[max_index]
+    x_s = xvec[max_index]
+    return x_s, T_s
+
 
 def get_qdot(gas, profile, pressure=101325):
     """

@@ -217,4 +217,7 @@ public:
 
     bool xStagControl;
     double xStag;
+
+    double pt_x;
+    double pt_T;
 };

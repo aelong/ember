@@ -200,6 +200,10 @@ cdef class ConfigOptions:
 
         # Initial condition
         IC = self.initialCondition
+
+        opts.pt_x = IC.pt_x #aelong 9.12.17
+        opts.pt_T = IC.pt_T #aelong 9.12.17
+
         cdef np.ndarray[np.double_t, ndim=1] data
         cdef np.ndarray[np.double_t, ndim=2] Y
 

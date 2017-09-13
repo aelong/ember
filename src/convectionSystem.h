@@ -93,7 +93,15 @@ public:
     //! This value appears in the source term of the momentum equation.
     double rhou; //!< density of the unburned gas
     void setRhou(double _rhou) { rhou = _rhou; }
-
+    //9.12.17
+    //! Set the function used to compute the strain rate as a function of time
+    double pt_V;
+    void setPt_V(double V){pt_V = V;}
+    //! Set the Temperature boundary condition
+    double pt_x;
+    void setPt_x(double xs){pt_x = xs;}
+    double pt_T;
+    void setPt_T(double Ts){pt_T = Ts;}
     //end
 
 private:

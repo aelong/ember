@@ -108,6 +108,9 @@ void FlameSolver::initialize(void)
     tFlamePrev = t;
     tNow = t;
 
+    convectionSystem.utwSystem.setPt_x(options.pt_x);
+    convectionSystem.utwSystem.setPt_T(options.pt_T);
+
     totalTimer.start();
 }
 
@@ -151,7 +154,63 @@ void FlameSolver::setupStep()
     setupTimer.stop();
 
     // Set up solvers for split integration
+    Jstar = findJ(options.pt_x);
+//    std::cout << "Jstar: "<<Jstar << std::endl;
     updateCrossTerms();
+
+    //aelong 9.12.17
+    if (options.pt_T != 0){
+        double pt_V = calcPt_V(Jstar);
+        convectionSystem.utwSystem.setPt_V(pt_V);
+    }
+}
+
+double FlameSolver::calcPt_V(int j)
+{
+    // Reaction energy production term  [O[10^8]]
+    gas.setStateMass(&Y(0,j), T(j));
+    gas.getEnthalpies(&hk(0,j));
+    gas.getReactionRates(&wDot(0,j));
+    double cpJ = gas.getSpecificHeatCapacity();
+    double rhoJ = gas.getDensity();
+    double lambdaJ = gas.getThermalConductivity();
+    double qDotJ = - (wDot.col(j) * hk.col(j)).sum();
+
+    // Species diffusion energy term
+    double qSdiffJ;
+    qSdiffJ = dTcrossJ*rhoJ*cpJ; //dTdtCross[j]*rho[j]*cp[j]
+
+    // Thermal diffusion term  [O[10^10]]
+    double qDiffJ;
+    double pt1 = rx[j-1] * lambdaJ* (T(j)-T(j-1))/hh[j-1];
+    double pt2 = rx[j] * lambdaJ* (T(j+1)-T(j))/hh[j];
+    qDiffJ = pt2-pt1/hh[j];
+
+//    std::cout << "In FlameSolver::calcEnergyTerms and lambda  is " << lambdaJ << std::endl;
+//    std::cout << "In FlameSolver::calcEnergyTerms and T is " << T(j) << std::endl;
+//    std::cout << "In FlameSolver::calcEnergyTerms and hh is " << hh[j] << std::endl;
+//    std::cout << "In FlameSolver::calcEnergyTerms and rx is " << rx[j] << std::endl;
+    std::cout << "In FlameSolver::calcEnergyTerms and qDotJ is " << qDotJ << std::endl;
+    std::cout << "In FlameSolver::calcEnergyTerms and qSdiffJ is " << qSdiffJ << std::endl;
+    std::cout << "In FlameSolver::calcEnergyTerms and qDiffJ is "  << qDiffJ << std::endl;
+//    std::cout << "In FlameSolver::calcEnergyTerms and cp is "  << cpJ << std::endl;
+    double pt_V;
+    pt_V = (-qDotJ - qSdiffJ + qDiffJ) / cpJ / ((T(j+1)-T(j))/hh[j]);
+    std::cout << "In FlameSolver::calcEnergyTerms and pt_V  is " << pt_V << std::endl;
+
+    return pt_V;
+}
+
+int FlameSolver::findJ(double xs)
+{
+    int x_index = 0;
+
+    for (size_t j=1; j<jj; j++)
+    {
+        if (xs == grid.x[j]){x_index = j;}
+    }
+
+    return x_index;
 }
 
 void FlameSolver::prepareIntegrators()
@@ -593,7 +652,7 @@ void FlameSolver::updateCrossTerms()
     Eigen::Block<dmatrix> dYdtCross = ddtCross.bottomRows(nSpec);
 
     // dTdt due to gradients in species composition
-    Eigen::Block<dmatrix, 1> dTdtCross = ddtCross.row(kEnergy);
+    Eigen::Block<dmatrix, 1> dTdtCross = ddtCross.row(kEnergy); //aelong 9.12.17
 
     dYdtCross.col(0).setZero();
     dYdtCross.col(jj).setZero();
@@ -612,6 +671,12 @@ void FlameSolver::updateCrossTerms()
         if (!options.quasi2d) {
             dTdtCross[j] = - 0.5 * (sumcpj[j] + sumcpj[j-1]) * dTdx / (cp[j] * rho[j]);
         }
+    }
+
+    if (options.pt_T != 0){
+        std::cout << "Entering "  << Jstar << std::endl;
+        dTcrossJ = dTdtCross[Jstar]* cp[Jstar] * rho[Jstar];
+        std::cout << "In FlameSolver::updateCrossTerms() and dTcrossJ is " << dTcrossJ << std::endl;
     }
 
     assert(mathUtils::notnan(ddtCross));
@@ -1097,3 +1162,4 @@ void FlameSolver::printPerfString(std::ostream& stats, const std::string& label,
         stats << format("%s %9.3f (%12i)\n") % label % T.getTime() % T.getCallCount();
     }
 }
+

@@ -17,10 +17,16 @@ ConvectionSystemUTW::ConvectionSystemUTW()
 int ConvectionSystemUTW::f(const realtype t, const sdVector& y, sdVector& ydot)
 {
 //////aelong 9/8/17
+
 //    double a = strainFunction->a(t);
 //    double dadt = strainFunction->dadt(t);
 //
-//    std::cout << "In ConvectionSystemUTW::f and a is" << a << std::endl;
+//    std::cout << "In ConvectionSystemUTW::f and Eterms is" << Eterms << std::endl;
+//    if (pt_T != 0){
+//        std::cout << "In ConvectionSystemUTW::f and pt_x is" << pt_x << std::endl;
+//        std::cout << "In ConvectionSystemUTW::f and pt_T is" << pt_T << std::endl;
+//    }
+
 //////aelong end
 
     unroll_y(y);

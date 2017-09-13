@@ -122,6 +122,9 @@ cdef extern from "readConfig.h":
         cbool xStagControl
         double xStag
 
+        double pt_x
+        double pt_T
+
 
 cdef extern from "debugUtils.h":
     cdef cbool CxxSetDebugParameters "debugParameters::setParameters" (cbool, cbool, cbool, cbool, cbool)

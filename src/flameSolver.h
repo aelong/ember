@@ -86,6 +86,9 @@ public:
     double Tleft, Tright;
     dvec Yleft, Yright;
 
+    double dTcrossJ;
+    int Jstar;
+
     void setupStep();
     void prepareIntegrators();
     int finishStep();
@@ -193,4 +196,13 @@ public:
     PerfTimer reactionRatesTimer, transportTimer, thermoTimer;
     PerfTimer jacobianTimer;
     PerfTimer conductivityTimer, viscosityTimer, diffusivityTimer;
+
+    // This function designed to calculate the energy diffusion terms of the
+    // energy equation for use in the internal Temperature boundary condition
+    // formulation.
+    double calcPt_V(int j); //aelong 9.12.17
+    int findJ(double xs); //aelong 9.12.17
+//    typedef Eigen::Block<dmatrix, 1> block_1;
+//    block_1 dTdtCross;
+
 };

@@ -531,6 +531,8 @@ class InitialCondition(Options):
     Y = Option(None, level=3)
     V = Option(None, level=3)
 
+    pt_x = FloatOption(0.0, level=1)
+    pt_T = FloatOption(0.0, level=1)
 
 class WallFlux(Options):
     #: Reference temperature for the wall heat flux
