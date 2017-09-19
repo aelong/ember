@@ -154,14 +154,16 @@ void FlameSolver::setupStep()
     setupTimer.stop();
 
     // Set up solvers for split integration
-    Jstar = findJ(options.pt_x);
-//    std::cout << "Jstar: "<<Jstar << std::endl;
-    updateCrossTerms();
+//    updateCrossTerms();
 
     //aelong 9.12.17
     if (options.pt_T != 0){
+        Jstar = findJ(options.pt_x);
+        updateCrossTerms();
         double pt_V = calcPt_V(Jstar);
         convectionSystem.utwSystem.setPt_V(pt_V);
+    }else{
+        updateCrossTerms();
     }
 }
 
@@ -173,30 +175,47 @@ double FlameSolver::calcPt_V(int j)
     gas.getReactionRates(&wDot(0,j));
     double cpJ = gas.getSpecificHeatCapacity();
     double rhoJ = gas.getDensity();
-    double lambdaJ = gas.getThermalConductivity();
     double qDotJ = - (wDot.col(j) * hk.col(j)).sum();
 
     // Species diffusion energy term
     double qSdiffJ;
     qSdiffJ = dTcrossJ*rhoJ*cpJ; //dTdtCross[j]*rho[j]*cp[j]
 
-    // Thermal diffusion term  [O[10^10]]
-    double qDiffJ;
-    double pt1 = rx[j-1] * lambdaJ* (T(j)-T(j-1))/hh[j-1];
-    double pt2 = rx[j] * lambdaJ* (T(j+1)-T(j))/hh[j];
-    qDiffJ = pt2-pt1/hh[j];
+    // Thermal diffusion term
+    gas.setStateMass(&Y(0,j-2), T(j-2));
+    double lambdaJn2 = gas.getThermalConductivity();
+    gas.setStateMass(&Y(0,j-1), T(j-1));
+    double lambdaJn1 = gas.getThermalConductivity();
+    gas.setStateMass(&Y(0,j+1), T(j+1));
+    double lambdaJp1 = gas.getThermalConductivity();
+    gas.setStateMass(&Y(0,j+2), T(j+2));
+    double lambdaJp2 = gas.getThermalConductivity();
 
+    double dTdx = (T(j+1)-T(j-1))/(x(j+1)-x(j-1));
+    double dTdxn = (T(j-1)-T(j-2))/(x(j-1)-x(j-2));
+    double dTdxp = (T(j+2)-T(j+1))/(x(j+2)-x(j+1));
+
+    double lambdan = (lambdaJn2 + lambdaJn1)/2.0;
+    double lambdap = (lambdaJp2 + lambdaJp1)/2.0;
+
+    double qDiffJ;
+    qDiffJ = (1/rx[j])*(dTdxp*lambdap*rx_half[j+1] - dTdxn*lambdan*rx_half[j-1])/( (x(j+2)+x(j+1))/2.0 - (x(j-2)+x(j-1))/2.0  ) ;
+
+//    std::cout << "In FlameSolver::calcEnergyTerms and pt1 is " << pt1 << std::endl;
+//    std::cout << "In FlameSolver::calcEnergyTerms and pt2 is " << pt2 << std::endl;
 //    std::cout << "In FlameSolver::calcEnergyTerms and lambda  is " << lambdaJ << std::endl;
 //    std::cout << "In FlameSolver::calcEnergyTerms and T is " << T(j) << std::endl;
 //    std::cout << "In FlameSolver::calcEnergyTerms and hh is " << hh[j] << std::endl;
-//    std::cout << "In FlameSolver::calcEnergyTerms and rx is " << rx[j] << std::endl;
+//    std::cout << "In FlameSolver::calcEnergyTerms and rho is " << rhoJ << std::endl;
     std::cout << "In FlameSolver::calcEnergyTerms and qDotJ is " << qDotJ << std::endl;
     std::cout << "In FlameSolver::calcEnergyTerms and qSdiffJ is " << qSdiffJ << std::endl;
     std::cout << "In FlameSolver::calcEnergyTerms and qDiffJ is "  << qDiffJ << std::endl;
 //    std::cout << "In FlameSolver::calcEnergyTerms and cp is "  << cpJ << std::endl;
     double pt_V;
-    pt_V = (-qDotJ - qSdiffJ + qDiffJ) / cpJ / ((T(j+1)-T(j))/hh[j]);
+    pt_V = (-qDotJ - qSdiffJ + qDiffJ) / cpJ / dTdx;//((T(j+1)-T(j))/hh[j]);
     std::cout << "In FlameSolver::calcEnergyTerms and pt_V  is " << pt_V << std::endl;
+
+    std::cin.get();
 
     return pt_V;
 }
@@ -209,7 +228,8 @@ int FlameSolver::findJ(double xs)
     {
         if (xs == grid.x[j]){x_index = j;}
     }
-
+    std::cout << "In FlameSolver::findJ and x length is " << grid.x.size() << std::endl;
+    std::cout << "In FlameSolver::findJ and J is " << x_index << std::endl;
     return x_index;
 }
 
@@ -673,9 +693,10 @@ void FlameSolver::updateCrossTerms()
         }
     }
 
+    //aelong
     if (options.pt_T != 0){
-        std::cout << "Entering "  << Jstar << std::endl;
-        dTcrossJ = dTdtCross[Jstar]* cp[Jstar] * rho[Jstar];
+        std::cout << "In FlameSolver::updateCrossTerms() and J is "  << Jstar << std::endl;
+        dTcrossJ = dTdtCross[Jstar];
         std::cout << "In FlameSolver::updateCrossTerms() and dTcrossJ is " << dTcrossJ << std::endl;
     }
 
