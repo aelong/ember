@@ -202,6 +202,7 @@ public:
     // formulation.
     double calcPt_V(int j); //aelong 9.12.17
     int findJ(double xs); //aelong 9.12.17
+    int findJduring(); //aelong 9.20.17
 //    typedef Eigen::Block<dmatrix, 1> block_1;
 //    block_1 dTdtCross;
 

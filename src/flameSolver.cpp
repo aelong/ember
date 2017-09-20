@@ -215,7 +215,12 @@ double FlameSolver::calcPt_V(int j)
     pt_V = (-qDotJ - qSdiffJ + qDiffJ) / cpJ / dTdx;//((T(j+1)-T(j))/hh[j]);
     std::cout << "In FlameSolver::calcEnergyTerms and pt_V  is " << pt_V << std::endl;
 
-    std::cin.get();
+    dvec VdTdx = ddtConv.row(kEnergy);
+    double pt_Vnew = VdTdx[Jstar]/dTdx;
+//    std::cout << "In FlameSolver::calcEnergyTerms and VdTdx  is " << VdTdx << std::endl;
+    std::cout << "In FlameSolver::calcEnergyTerms and pt_Vnew  is " << pt_Vnew << std::endl;
+
+//    std::cin.get();
 
     return pt_V;
 }
@@ -230,6 +235,25 @@ int FlameSolver::findJ(double xs)
     }
     std::cout << "In FlameSolver::findJ and x length is " << grid.x.size() << std::endl;
     std::cout << "In FlameSolver::findJ and J is " << x_index << std::endl;
+    return x_index;
+}
+
+int FlameSolver::findJduring()
+{
+    int x_index = 0;
+
+    for (size_t j=1; j<jj; j++)
+    {
+        double dTdx = (T(j)-T(j-1))/(x(j)-x(j-1));
+        double dTdxp = (T(j+1)-T(j))/(x(j+1)-x(j));
+//        std::cout << "In FlameSolver::findJduring and dTdx is " << dTdx << std::endl;
+//        std::cout << "In FlameSolver::findJduring and dTdxp is " << dTdxp << std::endl;
+        if (dTdx < dTdxp){x_index = j;break;}
+    }
+
+    std::cout << "In FlameSolver::findJduring and x length is " << grid.x.size() << std::endl;
+    std::cout << "In FlameSolver::findJduring and J is " << x_index << std::endl;
+//    std::cin.get();
     return x_index;
 }
 
@@ -282,6 +306,26 @@ void FlameSolver::prepareIntegrators()
     // Convection terms
     setConvectionSolverState(tNow);
     dmatrix ddt = ddtConv + ddtDiff + ddtProd;
+
+    Jstar = findJduring();
+    double dTdx = (T(Jstar + 1) - T(Jstar - 1)) / (x(Jstar + 1) - x(Jstar - 1));
+    dvec VdTdx = ddtConv.row(kEnergy);
+    double pt_Vnew = VdTdx[Jstar] / dTdx;
+
+    //    std::cout << "In FlameSolver::calcEnergyTerms and VdTdx  is " << VdTdx << std::endl;
+    std::cout << "In FlameSolver::prepareIntegrators() and pt_Vnew  is " << pt_Vnew << std::endl;
+    //aelong 9.19.17
+    if (options.pt_T != 0) {
+        Jstar = findJ(options.pt_x);
+        double dTdx = (T(Jstar + 1) - T(Jstar - 1)) / (x(Jstar + 1) - x(Jstar - 1));
+        dvec VdTdx = ddtConv.row(kEnergy);
+        double pt_Vnew = VdTdx[Jstar] / dTdx;
+        //    std::cout << "In FlameSolver::calcEnergyTerms and VdTdx  is " << VdTdx << std::endl;
+        std::cout << "In FlameSolver::prepareIntegrators() and pt_Vnew  is " << pt_Vnew << std::endl;
+
+        std::cin.get();
+    };
+
     if (options.splittingMethod == "balanced") {
         ddt += ddtCross;
     }
