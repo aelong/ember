@@ -498,6 +498,7 @@ void FlameSolver::resizeAuxiliary()
             system->setRateMultiplierFunction(rateMultiplierFunction);
             system->setHeatLossFunction(heatLossFunction);
             system->setRhou(rhou);
+            std::cout << "FlameSolver::resizeAux rhoU = " << rhou <<std::endl; //aelong correct here
             system->setPosition(j, x[j]);
             if (options.quasi2d) {
                 system->setupQuasi2d(vzInterp, TInterp);
@@ -525,6 +526,7 @@ void FlameSolver::resizeAuxiliary()
 
     convectionSystem.utwSystem.setStrainFunction(strainfunc);
     convectionSystem.utwSystem.setRhou(rhou);
+    std::cout << "FlameSolver::resizeAux2 rhoU = " << rhou <<std::endl; //aelong correct here
 
     if (options.quasi2d) {
         convectionSystem.setupQuasi2D(vzInterp, vrInterp);
@@ -1026,7 +1028,9 @@ void FlameSolver::loadProfile(void)
             Yright = Yfuel;
         }
 
-        rhou = rhoLeft;
+        rhou = rhoOxidizer; //aelong
+        std::cout << "FlameSolver::loadProfile rhoU = " << rhou <<std::endl; //aelong
+
     } else if (options.flameType == "quasi2d") {
         gas.thermo.setState_TPY(T(0), options.pressure, &Y(0,0));
         rhoLeft = gas.thermo.density();

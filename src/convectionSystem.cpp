@@ -116,7 +116,11 @@ int ConvectionSystemUTW::f(const realtype t, const sdVector& y, sdVector& ydot)
     if (rV[jj] < 0  || grid.rightBC == BoundaryCondition::FixedValue) {
         // Convection term has nothing to contribute in this case,
         // So only the value from the other terms remains
-        dUdt[jj] = splitConstU[jj] - U[jj]*U[jj]
+//        std::cout << "ConvectionSystem::f rhoU = " << rhou <<std::endl; //aelong
+//        std::cout << "ConvectionSystem::f rhoJJ = " << rho[jj] <<std::endl; //aelong
+        std::cout << "ConvectionSystem::f rhou/rhoJJ = " << rhou/rho[jj] <<std::endl; //aelong
+        std::cout << "ConvectionSystem::f a = " << a <<std::endl; //aelong
+        dUdt[jj] = splitConstU[jj]
                    + rhou/rho[jj]*(dadt/pow(2.0, beta) + a*a/pow(2.0, 2*beta));
         dTdt[jj] = splitConstT[jj];
         dWdt[jj] = -Wmx[jj] * Wmx[jj] * splitConstW[jj];

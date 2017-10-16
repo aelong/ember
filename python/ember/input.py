@@ -1151,8 +1151,13 @@ class ConcreteConfig(_ember.ConfigOptions):
                 T[-1] = IC.Tfuel
                 Y[:,-1] = Yfuel
 
-            gas.TPY = T[0], IC.pressure, Y[:,0]
+            # gas.TPY = T[0], IC.pressure, Y[:,0]
+            gas.TPY = IC.Toxidizer, IC.pressure, IC.oxidizer  #aelong
             rhou = gas.density  # arbitrary for diffusion flame
+            print IC.Toxidizer
+            print IC.pressure
+            print IC.oxidizer
+            print rhou
 
         return rhou
 
@@ -1243,7 +1248,7 @@ class ConcreteConfig(_ember.ConfigOptions):
         for j in range(N):
             gas.TPY = T[j], IC.pressure, Y[:,j]
             rho[j] = gas.density
-            U[j] = a0 * np.sqrt(rhou/rho[j])
+            U[j] = a0 * np.sqrt(rhou/rho[j]/pow(2 ,2*beta)) #aelong fix initial guess
 
         for _ in range(2):
             utils.smooth(U)
